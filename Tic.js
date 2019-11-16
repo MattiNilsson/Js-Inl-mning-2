@@ -10,6 +10,30 @@ let winnerCheck = [];
 let winner = "";
 let moves = 0;
 
+let resetBtn = document.getElementById("resetBtn");
+if(winner === ""){
+    resetBtn.setAttribute("style", "display:none");
+}
+
+resetBtn.addEventListener("click", () =>{
+    console.log(takenBoards)
+    for(let i = 0; i < boards.length; i++){
+        if(boards[i].hasChildNodes()){
+            boards[i].removeChild(boards[i].firstChild);
+            console.log("Removed " + boards[i]);
+        }
+        resetBtn.setAttribute("style", "display:none");
+        whichPlayer = "playerOne";
+        showWhichPlayer.textContent = "Player One's turn"
+        gameBorder.setAttribute("style", "border: 10px solid black")
+        takenBoards[i] = null;
+        winnerCheck[i] = null;
+        winner = "";
+        moves = 0;
+    }
+    console.log(takenBoards);
+})
+
 for(let i = 0; i < boards.length; i++){
     boards[i].addEventListener("mouseup", () =>{
         if(boards[i].id !== takenBoards[i] && winner === ""){
@@ -147,13 +171,17 @@ function check(){
         showWhichPlayer.textContent = "IT'S A TIE";
         showWhichPlayer.setAttribute("style", "color : White");
         gameBorder.setAttribute("style", "border: 20px solid White")
+        resetBtn.setAttribute("style", "display:block")
     }
 
     if(winner === "playerOne"){
         showWhichPlayer.textContent = "Player One Wins";
         gameBorder.setAttribute("style", "border: 20px solid black")
+        resetBtn.setAttribute("style", "display:block")
     }else if(winner === "playerTwo"){
         showWhichPlayer.textContent = "Player Two Wins";
         gameBorder.setAttribute("style", "border: 20px solid red")
+        resetBtn.setAttribute("style", "display:block")
     }
 }
+
