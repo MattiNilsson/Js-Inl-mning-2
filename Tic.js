@@ -39,7 +39,7 @@ resetBtn.addEventListener("click", () =>{
         resetBtn.setAttribute("style", "display:none");
         whichPlayer = "playerOne";
         showWhichPlayer.textContent = "Player One's turn"
-        gameBorder.setAttribute("style", "border: 10px solid black")
+        gameBorder.setAttribute("style", "border: 4px solid black")
         takenBoards[i] = null;
         winnerCheck[i] = null;
         winner = "";
@@ -106,13 +106,13 @@ for(let i = 0; i < boards.length; i++){
                 winnerCheck[RNGnum] = "playerTwo";
                 moves++;
                 winner = check();
-                winnerLol();
+                theWinner();
                 }
         }else if(boards[i].id === takenBoards[i] && winner === ""){
             alert("Already Taken");
         }
         winner = check();
-        winnerLol();
+        theWinner();
     });
 }
 
@@ -173,7 +173,7 @@ function check(){
 }
 
 //  Displays the winner on screen and also condition for TIE.
-function winnerLol(){
+function theWinner(){
     if(winner === "" && moves === 9){
         showWhichPlayer.textContent = "IT'S A TIE";
         showWhichPlayer.setAttribute("style", "color : rgb(126, 225, 255);");
